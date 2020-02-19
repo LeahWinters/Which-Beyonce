@@ -172,22 +172,28 @@ h3 {
 }
 
 .winner-page {
+  height: 100vh;
+}
+
+.winner-page-img {
   background-image: url(assets/dwight.jpg);
   background-size: cover;
-  background-blend-mode: lighten;
-  height: 79vh;
+  height: 100vh;
+  opacity: 0.7;
 }
 
 h4 {
+  color: #FFF;
   text-align: center;
   font-size: 6em;
-  margin: 12% 0 0;
+  margin: 0 0 6% 0;
+  padding-top: 12%;
 }
 
 .all-matches-found {
   text-align: center;
   font-size: 2.5em;
-  color: black;
+  color: #FFF;
   margin-bottom: 0;
   text-transform: none;
 }
@@ -195,11 +201,11 @@ h4 {
 .total-time-completed {
   text-align: center;
   font-size: 3em;
-  color: black;
+  color: #FFF;
   margin: 0;
 }
 
-.winner-pg-btn-cantainer {
+.winner-pg-btn-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -209,10 +215,9 @@ h4 {
   width: 25%;
   height: 2.5em;
   font-size: 2em;
-  background-color: black;
-  color: white;
+  background-color: #FFF;
+  color: #000;
   border: none;
   outline: none;
-  justify-content: center;
   margin: 5% 3% 0 3%;
 }
