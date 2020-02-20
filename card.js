@@ -1,11 +1,14 @@
-// creating a card class
 class Card {
-  constructor() {
+  constructor(matchedInfo, cardPhoto) {
     this.matchedInfo = matchedInfo;
     this.matched = false;
     this.selected = false;
+    this.cardPhoto = cardPhoto;
   }
-  matches() {
+
+  match() {
 
   }
+
+
 }
