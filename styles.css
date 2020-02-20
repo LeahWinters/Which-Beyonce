@@ -15,6 +15,7 @@ h1 {
   background-color: #EBBAB9;
   color: #035370;
   display: flex;
+  font-size: 300%;
   justify-content: center;
   margin: 0;
   padding: 1%;
@@ -27,13 +28,15 @@ aside {
   background-color: #035370;
   display: flex;
   flex-direction: column;
-  height: 93vh;
+  height: 100vh;
   width: 23%;
 }
 
 p {
   color: #FFD3D3;
-  font-size: 1.2em;
+  display: flex;
+  font-size: 130%;
+  justify-content: center;
   margin: 4%;
   text-transform: uppercase;
 }
@@ -51,7 +54,7 @@ h2 {
 }
 
 .matches-made-container {
-  height: 80%;
+  height: 40%;
   width: 90%;
 }
 
@@ -59,9 +62,10 @@ h2 {
 .bottom-row-matched-img {
   display: flex;
   flex-direction: row;
-  height: 40%;
+  height: 35%;
   justify-content: center;
   margin-top: 5%;
+  padding: 5% 0;
 }
 
 .matched-img {
@@ -77,17 +81,22 @@ h2 {
 
 /* right side of screen */
 main {
-  background-color: #C7D5E0;
-  height: 93vh;
-  width: 77%;
+  height: 100vh;
+  width: 100%;
   /* flex-wrap: wrap; */
 }
 
 .pams-painting{
   background-image: url(assets/pamsPainting.jpg);
   background-size: cover;
-  height: 93vh;
+  height: 100vh;
   opacity: 0.7;
+}
+
+.container-to-all-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cards-row-1-container,
@@ -96,7 +105,7 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 90%;
+  width: 100%;
 }
 
 .cards-row-1-container {
@@ -109,12 +118,14 @@ main {
 }
 
 .card {
-  background-color: #FEFFFE;
-  border: 3px solid #035370;
+  /* background-color: #FEFFFE; */
+  background-image: url(assets/dunderMiff2.jpg);
+  background-size: 100% 12em;
+  border: 3px solid #EBBAB9;
   box-shadow: 5px 5px 5px -4px rgba(3, 83, 112, 0.57);
   color: #035370;
   display: flex;
-  height: 10em;
+  height: 12em;
   justify-content: center;
   margin: 0;
   width: 13%;
@@ -141,18 +152,19 @@ main {
 }
 
 .card3 {
-  transform: rotate(320deg);
+  transform: rotate(120deg);
 }
 
 .card4 {
-  transform: rotate(298deg);
+  transform: rotate(220deg);
 }
 
 .card5 {
-  transform: rotate(16deg);
+  transform: rotate(80deg);
 }
 
 .card6 {
+  margin: 2% 12% 0 5%;
   transform: rotate(329deg);
 }
 
@@ -165,18 +177,20 @@ main {
 }
 
 .card9 {
-  margin: 2% 8% 0 10%;
-  transform: rotate(345deg);
+  margin: 2% 12% 0 10%;
+  transform: rotate(245deg);
 }
 
 .card10 {
-  margin: 2% 0 2% 0;
-  transform: rotate(5deg);
+  margin: 2% 0;
+  transform: rotate(15deg);
 }
 
 h3 {
-  font-size: 3em;
-  text-transform: uppercase;
+  background-image: url(assets/dunderMiff.jpg);
+  background-size: cover;
+  /* font-size: 3em;
+  text-transform: uppercase; */
 }
 
 .winner-page {
@@ -192,25 +206,25 @@ h3 {
 
 h4 {
   color: #FFF;
-  text-align: center;
   font-size: 6em;
   margin: 0 0 6% 0;
   padding-top: 12%;
+  text-align: center;
 }
 
 .all-matches-found {
-  text-align: center;
-  font-size: 2.5em;
   color: #FFF;
+  font-size: 2.5em;
   margin-bottom: 0;
+  text-align: center;
   text-transform: none;
 }
 
 .total-time-completed {
-  text-align: center;
-  font-size: 3em;
   color: #FFF;
+  font-size: 3em;
   margin: 0;
+  text-align: center;
 }
 
 .winner-pg-btn-container {
@@ -220,12 +234,12 @@ h4 {
 }
 
 .win-pg-btns {
-  width: 25%;
-  height: 2.5em;
-  font-size: 2em;
   background-color: #FFF;
-  color: #000;
   border: none;
-  outline: none;
+  color: #000;
+  font-size: 2em;
+  height: 2.5em;
   margin: 5% 3% 0 3%;
+  outline: none;
+  width: 25%;
 }
