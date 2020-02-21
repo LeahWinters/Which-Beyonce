@@ -27,10 +27,17 @@ function clickedCard(i) {
 function changePicture(i) {
   var individualCards = document.querySelectorAll('.card-container');
   var card = document.querySelectorAll('.card');
-  // console.log(i, individualCards[i])
   var myArray = Array.from(individualCards);
   var reversedArray = myArray.reverse()
   if (i === 0 || i === 1) {
     reversedArray[i].children[0].style.backgroundImage = "url('./assets/noGodPleaseNooo.jpg')";
+  } else if (i === 2 || i === 3) {
+    reversedArray[i].children[0].style.backgroundImage = "url('./assets/prisonMike.jpg')";
+  } else if (i === 4 || i === 5) {
+    reversedArray[i].children[0].style.backgroundImage = "url('./assets/sexySanta.jpg')";
+  } else if (i === 6 || i === 7) {
+    reversedArray[i].children[0].style.backgroundImage = "url('./assets/tellMeMore.jpg')";
+  } else if (i === 8 || i === 9) {
+    reversedArray[i].children[0].style.backgroundImage = "url('./assets/worldsBestBoss.jpg')";
   }
 }
