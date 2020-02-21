@@ -1,6 +1,6 @@
 class Deck {
-  constructor(cards) {
-    this.cards = cards;
+  constructor() {
+    this.cards = this.pushToDeck();
     this.matchedCards = [];
     this.selectedCards = [];
   }
@@ -17,4 +17,12 @@ class Deck {
 
   }
 
+  pushToDeck() {
+    var cards = [];
+    for (var i = 0; i < 10 ; i++) {
+      var newCard = new Card('mike' + i, './assets/image' + i + '.jpg')
+      cards.push(newCard)
+    }
+    return cards;
+  }
 }

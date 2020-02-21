@@ -1,9 +1,8 @@
 class Card {
-  constructor(matchedInfo, cardPhoto) {
+  constructor(matchedInfo) {
     this.matchedInfo = matchedInfo;
     this.matched = false;
     this.selected = false;
-    this.cardPhoto = cardPhoto;
   }
 
   match() {
