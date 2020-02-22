@@ -7,21 +7,33 @@ function displayCards() {
   var allCards = deck.cards;
   var cardHolderSection = document.querySelector('.container-to-all-cards');
   console.log(allCards)
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < deck.cards.length; i++) {
     cardHolderSection.insertAdjacentHTML('afterend',
-      `<section onClick="clickedCard(${i})" class="card-container">
-    <div class="card" id=${"card" + i}></div>
+      `<section onClick="initallyClickedCard(${i})" class="card-container">
+    <div class="card ${"card" + i}" id=${deck.cards[i].id}></div>
     </section>`);
   }
 }
 
-function clickedCard(i) {
+function initallyClickedCard(i) {
   if (deck.selectedCards.length < 2) {
     changePicture(i);
     deck.selectedCards.push(deck.cards[i]);
+      console.log("intial array", deck.selectedCards)
   } else {
-    console.log("Too many cards")
+    clickCardAgain(i)
+    // console.log("Too many cards");
   }
+}
+
+function clickCardAgain(i) {
+  for (var i = 0; i < deck.selectedCards.length; i++) {
+    if (deck.selectedCards[i].id == event.target.id) {
+      var indexCard = deck.selectedCards.indexOf(deck.selectedCards[i]);
+      deck.selectedCards.splice(indexCard, 1);
+    }
+  }
+  console.log(deck.selectedCards)
 }
 
 function changePicture(i) {
