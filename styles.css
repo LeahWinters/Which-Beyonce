@@ -132,48 +132,48 @@ main {
   filter: brightness(150%);
 }
 
-#card0 {
+.card0 {
   padding: 0;
   transform: rotate(330deg);
 }
 
-#card1 {
+.card1 {
   padding: 0;
   transform: rotate(15deg);
 }
 
-#card2 {
+.card2 {
   padding: 0;
   transform: rotate(120deg);
 }
 
-#card3 {
+.card3 {
   padding: 0;
   transform: rotate(220deg);
 }
 
-#card4 {
+.card4 {
   padding: 0;
   transform: rotate(80deg);
 }
 
-#card5 {
+.card5 {
   transform: rotate(329deg);
 }
 
-#card6 {
+.card6 {
   transform: rotate(50deg);
 }
 
-#card7 {
+.card7 {
   transform: rotate(55deg);
 }
 
-#card8 {
+.card8 {
   transform: rotate(245deg);
 }
 
-#card9 {
+.card9 {
   transform: rotate(15deg);
 }
 
