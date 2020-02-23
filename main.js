@@ -21,12 +21,14 @@ function initialCardClick(i, event) {
   if (deck.selectedCards.length < 2 && deck.cards[i].selected === false) {
     deck.checkSelectedCards(i);
     flipCard(event);
+    deck.checkIfCardsMatch(i);
     console.log("initial array", deck.selectedCards);
   } else {
     deck.removesSelectedArray(i, event)
     flipCard(event);
   }
 }
+
 
 // function checkSelectedCardsArrayLength(i, event) {
 //   if (selectedCards.length === 2 && deck.cards[i].selected === true) {

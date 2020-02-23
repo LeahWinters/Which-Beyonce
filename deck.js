@@ -23,8 +23,25 @@ class Deck {
     }
   }
 
-  moveToMatched() {
+  checkMatchedInfo(i) {
+    if (this.selectedCards[0].matchedInfo === this.selectedCards[1].matchedInfo) {
+      this.moveToMatched(i);
+      this.selectedCards = [];
+    }
+  }
 
+  moveToMatched(i) {
+    for (var i = 0; i < this.selectedCards.length; i++) {
+      this.matchedCards.push(this.selectedCards[i]);
+      this.selectedCards[i].match();
+    }
+  }
+
+  checkIfCardsMatch(i) {
+    if (deck.selectedCards.length === 2) {
+    deck.checkMatchedInfo(i);
+    console.log('matched array', deck.matchedCards);
+   }
   }
 
   pushToDeck() {
