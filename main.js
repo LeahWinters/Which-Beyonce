@@ -1,6 +1,6 @@
 var deck = new Deck();
 var selectedCards = deck.selectedCards;
-// var cards = deck.cards;
+
 window.addEventListener('load', displayCards);
 
 function displayCards() {
@@ -11,7 +11,7 @@ function displayCards() {
     cardHolderSection.insertAdjacentHTML('afterend',
       `<section onClick="startMatching(${i}, event)" class="flip-container">
       <div class="front-and-back-container ${"front-and-back-container" + i }">
-    <div class="card front ${"card" + i + "-front"}" id=${deck.cards[i].id}></div>
+    <div class="card ${"card" + i + "-front"}" id=${deck.cards[i].id}></div>
     <div class="card ${"card" + i + "-back"}" id=${deck.cards[i].id}></div>
     </div>
     </section>`);
@@ -19,24 +19,22 @@ function displayCards() {
 }
 
 function startMatching(i, event) {
-  console.log(event)
-  if (selectedCards.length <= 2 && deck.cards[i].selected === false) {
+  if (selectedCards.length < 2 && deck.cards[i].selected === false) {
     flipCard(event)
     deck.cards[i].selected = true;
     selectedCards.push(deck.cards[i]);
-    console.log("intial array", selectedCards)
   } else {
     removesSelectedArray(i, event)
   }
 }
 
 function removesSelectedArray(i, event) {
-  if (selectedCards.length === 2 && deck.cards[i].selected === true) {
+  if (selectedCards.length <= 2 && deck.cards[i].selected === true) {
     var indexCard = selectedCards.indexOf(deck.cards[i]);
     selectedCards.splice(indexCard, 1);
     flipCard(event);
     console.log("intial array", selectedCards)
-  } else {}
+  }
 }
 
 function flipCard(event) {
