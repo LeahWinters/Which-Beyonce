@@ -85,95 +85,146 @@ main {
   width: 100%;
 }
 
-.pams-painting{
+.pams-painting {
   background-image: url(assets/pamsPainting.jpg);
   background-size: cover;
   height: 100vh;
-  opacity: 0.7;
 }
 
 .container-to-all-cards {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  /* justify-content: flex-start; */
 }
 
-.card-container {
+.flip-container {
   display: inline-flex;
-  flex-direction: row;
+  height: 7em;
   justify-content: space-between;
   margin: 0 5%;
   padding-top: 4%;
-  height: 12em;
-  width: 8em;
+  width: 4em;
+}
+
+.front-and-back-container {
+  display: inline-flex;
+  transform-style: preserve-3d;
+  transition: 1.5s;
+}
+
+.front-and-back-container.flip {
+  transform: rotateY(180deg);
 }
 
 .card {
+  backface-visibility: hidden;
   background-image: url(assets/dunderMiff2.jpg);
-  background-size: 100% 12em;
+  background-size: 100% 7em;
   border: 3px solid #EBBAB9;
   box-shadow: 5px 5px 5px -4px rgba(3, 83, 112, 0.57);
-  color: #035370;
-  height: 12em;
-  width: 8em;
-  justify-content: center;
+  height: 7em;
+  width: 4em;
+  z-index: 2;
 }
 
-.card:hover {
-  background-image: url(assets/dunderMiff2.jpg);
-  background-size: 100% 12em;
-  border: 3px solid #EBBAB9;
-  box-shadow: 5px 5px 5px -4px rgba(3, 83, 112, 0.57);
-  color: #035370;
-  height: 12em;
-  width: 8em;
-  justify-content: center;
-  filter: brightness(150%);
+
+.card1-back,
+.card0-back {
+  backface-visibility: hidden;
+  background-image: url(assets/noGodPleaseNooo.jpg);
+  background-position: center bottom;
+  background-size: cover;
+  background-size: 100% 7em;
+  transform: rotateY(180deg);
+  z-index: 2;
 }
 
-.card0 {
+.card2-back,
+.card3-back {
+  backface-visibility: hidden;
+  background-image: url(assets/prisonMike.jpg);
+  background-position: center bottom;
+  background-size: cover;
+  background-size: 100% 7em;
+  transform: rotateY(180deg);
+  z-index: 2;
+}
+
+.card4-back,
+.card5-back {
+  backface-visibility: hidden;
+  background-image: url(assets/sexySanta.jpg);
+  background-position: center bottom;
+  background-size: cover;
+  background-size: 100% 7em;
+  transform: rotateY(180deg);
+  z-index: 2;
+}
+
+.card6-back,
+.card7-back {
+  backface-visibility: hidden;
+  background-image: url(assets/tellMeMore.jpg);
+  background-position: center bottom;
+  background-size: cover;
+  background-size: 100% 7em;
+  transform: rotateY(180deg);
+  z-index: 2;
+}
+
+.card8-back,
+.card9-back {
+  backface-visibility: hidden;
+  background-image: url(assets/worldsBestBoss.jpg);
+  background-position: center bottom;
+  background-size: cover;
+  background-size: 100% 7em;
+  transform: rotateY(180deg);
+  z-index: 2;
+}
+
+.front-and-back-container0 {
   padding: 0;
   transform: rotate(330deg);
 }
 
-.card1 {
+.front-and-back-container1 {
   padding: 0;
   transform: rotate(15deg);
 }
 
-.card2 {
+.front-and-back-container2 {
   padding: 0;
   transform: rotate(120deg);
 }
 
-.card3 {
+.front-and-back-container3 {
   padding: 0;
   transform: rotate(220deg);
 }
 
-.card4 {
+.front-and-back-container4 {
   padding: 0;
   transform: rotate(80deg);
 }
 
-.card5 {
+.front-and-back-container5 {
   transform: rotate(329deg);
 }
 
-.card6 {
+.front-and-back-container6 {
   transform: rotate(50deg);
 }
 
-.card7 {
+.front-and-back-container7 {
   transform: rotate(55deg);
 }
 
-.card8 {
+.front-and-back-container8 {
   transform: rotate(245deg);
 }
 
-.card9 {
+.front-and-back-container9 {
   transform: rotate(15deg);
 }
 

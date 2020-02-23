@@ -19,7 +19,7 @@ class Deck {
 
   pushToDeck() {
     var cards = [];
-    for (var i = 0; i < 10 ; i++) {
+    for (var i = 0; i < 10; i++) {
       var newCard = new Card('mike' + i, i)
       cards.push(newCard)
     }
