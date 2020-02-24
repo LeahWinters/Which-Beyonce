@@ -4,60 +4,57 @@
   <title>Which Michael</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="main-game displayNone">
-  <header>
-    <h1>Which Michael Scott</h1>
-  </header>
-  <div class="whole-page">
-    <aside>
-      <p class="matches-this-round">matches this round</p>
-      <h2 class="total-matches">0</h2>
-      <section class="matches-made-container">
-        <div class="top-row-matched-img">
-          <div class="matched-img top-row-img-1">
+<body>
+  <section class="main-game">
+    <header>
+      <h1>Which Michael Scott</h1>
+    </header>
+    <div class="whole-page">
+      <aside>
+        <p class="matches-this-round">matches this round</p>
+        <h2 class="total-matches">0</h2>
+        <section class="matches-made-container">
+          <div class="top-row-matched-img">
+            <div class="matched-img top-row-img-1">
+            </div>
+            <div class="matched-img top-row-img-2">
+            </div>
+            <div class="matched-img top-row-img-3">
+            </div>
           </div>
-          <div class="matched-img top-row-img-2">
+          <div class="bottom-row-matched-img">
+            <div class="matched-img bottom-row-img-1">
+            </div>
+            <div class="matched-img bottom-row-img-2">
+            </div>
           </div>
-          <div class="matched-img top-row-img-3">
+        </section>
+        <p>top 3 times</p>
+        <p><span class="top-min-num1">1 </span>minutes <span class="top-sec-num1">30 </span>seconds</p>
+        <p><span class="top-min-num2">2 </span>minutes <span class="top-sec-num2">30 </span>seconds</p>
+        <p class="third-highest-time"><span class="top-min-num3">3 </span>minutes <span class="top-sec-num1">30 </span>seconds</p>
+      </aside>
+      <main>
+        <div class="pams-painting">
+          <div class="container-to-all-cards">
           </div>
         </div>
-        <div class="bottom-row-matched-img">
-          <div class="matched-img bottom-row-img-1">
-          </div>
-          <div class="matched-img bottom-row-img-2">
-          </div>
-        </div>
-      </section>
-      <p>top 3 times</p>
-      <p><span class="top-min-num1">1 </span>minutes <span class="top-sec-num1">30 </span>seconds</p>
-      <p><span class="top-min-num2">2 </span>minutes <span class="top-sec-num2">30 </span>seconds</p>
-      <p class="third-highest-time"><span class="top-min-num3">3 </span>minutes <span class="top-sec-num1">30 </span>seconds</p>
-    </aside>
-    <main>
-      <div class="pams-painting">
-        <div class="container-to-all-cards">
-
-        </div>
-      </div>
-    </main>
-  </div>
-</body>
-
-<!-- <body class="winner-page displayNone">
-  <div class="winner-page-img">
-    <h4>Congratulations!</h4>
-    <p class="all-matches-found">All 5 matches were found in</p>
-    <p class="total-time-completed"><span class="total-min">2 </span>minutes <span class="total-sec">30 </span>seconds</p>
-    <div class="winner-pg-btn-container">
-      <button type="button" class="win-pg-btns play-again-btn">Play Again</button>
-      <button type="button" class="win-pg-btns new-game-btn">New Game</button>
+      </main>
     </div>
-  </div>
-</body> -->
-<footer>
-  <script src="card.js"></script>
-  <script src="deck.js"></script>
-  <script src="main.js"></script>
-</footer>
-
+  </section>
+  <section class="winner-page hidden">
+    <div class="winner-page-img">
+      <h4>Congratulations!</h4>
+      <p class="all-matches-found">All 5 matches were found in</p>
+      <p class="total-time-completed"><span class="total-min">2 </span>minutes <span class="total-sec">30 </span>seconds</p>
+      <div class="winner-pg-btn-container">
+        <button type="button" class="win-pg-btns play-again-btn">Play Again</button>
+        <button type="button" class="win-pg-btns new-game-btn">New Game</button>
+      </div>
+    </div>
+  </section>
+</body>
+<script src="card.js"></script>
+<script src="deck.js"></script>
+<script src="main.js"></script>
 </html>

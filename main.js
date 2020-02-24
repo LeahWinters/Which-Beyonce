@@ -1,39 +1,57 @@
 var deck = new Deck();
-var selectedCards = deck.selectedCards;
 
 window.addEventListener('load', displayCards);
 
 function displayCards() {
-  var allCards = deck.cards;
+  deck.pushToDeck()
   var cardHolderSection = document.querySelector('.container-to-all-cards');
-  console.log(allCards)
+  console.log(deck.cards)
   for (var i = 0; i < deck.cards.length; i++) {
     cardHolderSection.insertAdjacentHTML('afterend',
-      `<section onClick="startMatching(${i}, event)" class="flip-container">
+      `<section onClick="initialCardClick(${i}, event)" class="flip-container">
       <div class="front-and-back-container ${"front-and-back-container" + i }">
-    <div class="card ${"card" + i + "-front"}" id=${deck.cards[i].id}></div>
-    <div class="card ${"card" + i + "-back"}" id=${deck.cards[i].id}></div>
+    <div class="card ${"card" + i + "-front"}"></div>
+    <div class="card ${"card" + i + "-back"}"></div>
     </div>
     </section>`);
   }
 }
 
-function startMatching(i, event) {
-  if (selectedCards.length < 2 && deck.cards[i].selected === false) {
-    flipCard(event)
-    deck.cards[i].selected = true;
-    selectedCards.push(deck.cards[i]);
+function initialCardClick(i, event) {
+  if (deck.selectedCards.length < 2 && deck.cards[i].selected === false) {
+    deck.checkSelectedCards(i);
+    flipCard(event);
+    var willDeleteCard = deck.checkIfCardsMatch(i);
+    console.log(willDeleteCard);
+    if (willDeleteCard === true) {
+      deleteMatchesFromDom();
+      console.log(deck.selectedCards)
+    }
   } else {
-    removesSelectedArray(i, event)
+    deck.removesSelectedArray(i, event)
+    flipCard(event);
   }
 }
 
-function removesSelectedArray(i, event) {
-  if (selectedCards.length <= 2 && deck.cards[i].selected === true) {
-    var indexCard = selectedCards.indexOf(deck.cards[i]);
-    selectedCards.splice(indexCard, 1);
-    flipCard(event);
-    console.log("intial array", selectedCards)
+function deleteMatchesFromDom() {
+  for (var i = 0; i < deck.selectedCards.length; i++) {
+    var cardContainer = document.querySelector('.front-and-back-container' + `${deck.selectedCards[i]}`);
+    cardContainer.style.visibility = 'hidden';
+  }
+  deck.selectedCards = [];
+  setTimeout(function changeMatchedCounter() {
+    var totalMatches = document.querySelector('.total-matches');
+    totalMatches.innerText = `${deck.matchedCounter}`
+  }, 1500);
+  changeToWinnerPage();
+}
+
+function changeToWinnerPage() {
+  var winnerPage = document.querySelector('.winner-page');
+  var mainGamePage = document.querySelector('.main-game');
+  if (deck.matchedCounter === 5) {
+    winnerPage.classList.add('hidden');
+    mainGamePage.classList.remove('hidden');
   }
 }
 
