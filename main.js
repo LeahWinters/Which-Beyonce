@@ -19,14 +19,13 @@ function displayCards() {
 
 function initialCardClick(i, event) {
   if (deck.selectedCards.length < 2 && deck.cards[i].selected === false) {
-  // debugger
     deck.checkSelectedCards(i);
     flipCard(event);
     var willDeleteCard = deck.checkIfCardsMatch(i);
     console.log(willDeleteCard);
     if (willDeleteCard === true) {
       deleteMatchesFromDom();
-      deck.selectedCards = [];
+      console.log(deck.selectedCards)
     }
   } else {
     deck.removesSelectedArray(i, event)

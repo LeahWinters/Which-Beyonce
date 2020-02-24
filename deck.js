@@ -18,6 +18,8 @@ class Deck {
 
   removesSelectedArray(i) {
     if (this.selectedCards.length <= 2 && this.cards[i].selected === true) {
+      var indexCard = this.selectedCards.indexOf(deck.cards[i]);
+      this.selectedCards.splice(indexCard, 1);
       this.cards[i].selected = false;
     }
   }
