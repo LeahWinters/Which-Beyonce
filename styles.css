@@ -127,7 +127,6 @@ main {
   z-index: 2;
 }
 
-
 .card0-back,
 .card5-back {
   backface-visibility: hidden;
@@ -228,9 +227,9 @@ main {
   transform: rotate(15deg);
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
 
 .winner-page {
   height: 100vh;

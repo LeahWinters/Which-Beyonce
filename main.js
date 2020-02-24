@@ -38,13 +38,22 @@ function deleteMatchesFromDom() {
     var cardContainer = document.querySelector('.front-and-back-container' + `${deck.selectedCards[i]}`);
     cardContainer.style.visibility = 'hidden';
   }
-    deck.selectedCards = [];
-    setTimeout(function changeMatchedCounter() {
-      var totalMatches = document.querySelector('.total-matches');
-      totalMatches.innerText = `${deck.matchedCounter}`
-    }, 1500);
+  deck.selectedCards = [];
+  setTimeout(function changeMatchedCounter() {
+    var totalMatches = document.querySelector('.total-matches');
+    totalMatches.innerText = `${deck.matchedCounter}`
+  }, 1500);
+  changeToWinnerPage();
 }
 
+function changeToWinnerPage() {
+  var winnerPage = document.querySelector('.winner-page');
+  var mainGamePage = document.querySelector('.main-game');
+  if (deck.matchedCounter === 5) {
+    winnerPage.classList.add('hidden');
+    mainGamePage.classList.remove('hidden');
+  }
+}
 
 function flipCard(event) {
   var closest = event.target.closest('.front-and-back-container');
