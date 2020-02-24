@@ -1,4 +1,7 @@
 var deck = new Deck();
+var startTimer;
+var endTimer;
+var totalGameTime;
 
 window.addEventListener('load', displayCards);
 
@@ -15,6 +18,7 @@ function displayCards() {
     </div>
     </section>`);
   }
+  startTimer = Date.now();
 }
 
 function initialCardClick(i, event) {
@@ -47,12 +51,21 @@ function deleteMatchesFromDom() {
 }
 
 function changeToWinnerPage() {
+  var totalTimeCompletion = document.querySelector('.total-sec');
   var winnerPage = document.querySelector('.winner-page');
   var mainGamePage = document.querySelector('.main-game');
   if (deck.matchedCounter === 5) {
     winnerPage.classList.remove('hidden');
     mainGamePage.classList.add('hidden');
   }
+  endTimer = Date.now();
+  timer();
+  totalTimeCompletion.innerText = `${totalGameTime} seconds`;
+}
+
+function timer() {
+  totalGameTime = (endTimer - startTimer) / 1000;
+  return totalGameTime;
 }
 
 function flipCard(event) {
