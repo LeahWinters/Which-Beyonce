@@ -2,6 +2,7 @@ class Deck {
   constructor() {
     this.cards = [];
     this.matchedCards = [];
+    this.matchedCounter = 0;
     this.selectedCards = [];
   }
 
@@ -9,39 +10,43 @@ class Deck {
 
   }
 
-  checkSelectedCards(i, event) {
-    this.selectedCards.push(this.cards[i]);
+  checkSelectedCards(i) {
+    this.selectedCards.push(i);
+    console.log(this.selectedCards);
     this.cards[i].selected = true;
   }
 
-  removesSelectedArray(i, event) {
+  removesSelectedArray(i) {
     if (this.selectedCards.length <= 2 && this.cards[i].selected === true) {
-      var indexCard = this.selectedCards.indexOf(this.cards[i]);
-      this.selectedCards.splice(indexCard, 1);
-      deck.cards[i].selected = false;
-      console.log("array after remove", this.selectedCards);
+      this.cards[i].selected = false;
     }
   }
 
+  checkIfCardsMatch(i) {
+    if (this.selectedCards.length === 2) {
+      console.log('matched array', this.matchedCards);
+    return this.checkMatchedInfo(i);
+    }
+    return false;
+  }
+
   checkMatchedInfo(i) {
-    if (this.selectedCards[0].matchedInfo === this.selectedCards[1].matchedInfo) {
+    if (this.cards[this.selectedCards[0]].matchedInfo === this.cards[this.selectedCards[1]].matchedInfo) {
       this.moveToMatched(i);
-      this.selectedCards = [];
+      return true;
+    } else {
+      return false;
     }
   }
 
   moveToMatched(i) {
     for (var i = 0; i < this.selectedCards.length; i++) {
-      this.matchedCards.push(this.selectedCards[i]);
-      this.selectedCards[i].match();
+      var currentCard = this.cards[this.selectedCards[i]]
+      currentCard.match();
+      this.matchedCards.push(currentCard);
     }
-  }
-
-  checkIfCardsMatch(i) {
-    if (deck.selectedCards.length === 2) {
-    deck.checkMatchedInfo(i);
-    console.log('matched array', deck.matchedCards);
-   }
+    this.matchedCounter++;
+    console.log(this.matchedCounter);
   }
 
   pushToDeck() {

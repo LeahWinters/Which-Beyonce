@@ -19,39 +19,33 @@ function displayCards() {
 
 function initialCardClick(i, event) {
   if (deck.selectedCards.length < 2 && deck.cards[i].selected === false) {
+  // debugger
     deck.checkSelectedCards(i);
     flipCard(event);
-    deck.checkIfCardsMatch(i);
-    console.log("initial array", deck.selectedCards);
+    var willDeleteCard = deck.checkIfCardsMatch(i);
+    console.log(willDeleteCard);
+    if (willDeleteCard === true) {
+      deleteMatchesFromDom();
+      deck.selectedCards = [];
+    }
   } else {
     deck.removesSelectedArray(i, event)
     flipCard(event);
   }
 }
 
+function deleteMatchesFromDom() {
+  for (var i = 0; i < deck.selectedCards.length; i++) {
+    var cardContainer = document.querySelector('.front-and-back-container' + `${deck.selectedCards[i]}`);
+    cardContainer.style.visibility = 'hidden';
+  }
+    deck.selectedCards = [];
+    setTimeout(function changeMatchedCounter() {
+      var totalMatches = document.querySelector('.total-matches');
+      totalMatches.innerText = `${deck.matchedCounter}`
+    }, 1500);
+}
 
-// function checkSelectedCardsArrayLength(i, event) {
-//   if (selectedCards.length === 2 && deck.cards[i].selected === true) {
-//     checkIfMatched(i)
-//   }
-// }
-
-// function checkIfMatched(i, event) {
-//   debugger
-//     if (deck.cards[0].classList === 'card0-back' && deck.cards[1].classList === 'card1-back') {
-//       deck.cards[i].matched = true;
-//   } else {
-//     // deck.cards[i].matched = false;
-//   }
-//     // var indexCard = selectedCards.indexOf(deck.cards[i]);
-//     // selectedCards.splice(indexCard, 2);
-//     console.log(deck.cards[i].matched)
-//     console.log(selectedCards);
-// }
-//if this.selected === true && same class on both cards are equal
-//to each other, then we want to push both cards into the matched card array
-//remove cards from selected cards array
-//and reassign this.matched to true in the case that they are a pair
 
 function flipCard(event) {
   var closest = event.target.closest('.front-and-back-container');

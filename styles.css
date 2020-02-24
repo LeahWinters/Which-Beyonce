@@ -228,6 +228,10 @@ main {
   transform: rotate(15deg);
 }
 
+/* .hidden {
+  display: none;
+} */
+
 .winner-page {
   height: 100vh;
 }
