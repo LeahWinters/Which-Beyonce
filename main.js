@@ -20,7 +20,6 @@ function handleClick(event) {
 
 function displayCards() {
   deck.pushToDeck()
-  console.log(deck.cards)
   for (var i = 0; i < deck.cards.length; i++) {
     cardHolderSection.insertAdjacentHTML('afterend',
       `<section onClick="initialCardClick(${i}, event)" class="flip-container">
@@ -34,14 +33,12 @@ function displayCards() {
 }
 
 function initialCardClick(i, event) {
+  flipCard(event);
   if (deck.selectedCards.length < 2 && deck.cards[i].selected === false) {
     deck.checkSelectedCards(i);
-    flipCard(event);
     var willDeleteCard = deck.checkIfCardsMatch(i);
-    console.log(willDeleteCard);
     if (willDeleteCard === true) {
       deleteMatchesFromDom();
-      console.log(deck.selectedCards)
     }
   } else {
     deck.removesSelectedArray(i, event)
@@ -79,8 +76,6 @@ function timer() {
   totalGameSeconds = Math.floor((endTime - startTime) / 1000);
   minutes = Math.floor((totalGameSeconds / 60) % 60);
   seconds = Math.floor((totalGameSeconds - minutes) % 60);
-  console.log('min', minutes, 'sec', seconds);
-  // return totalGameTime;
 }
 
 function playAgain(event) {

@@ -12,7 +12,6 @@ class Deck {
 
   checkSelectedCards(i) {
     this.selectedCards.push(i);
-    console.log(this.selectedCards);
     this.cards[i].selected = true;
   }
 
@@ -26,7 +25,6 @@ class Deck {
 
   checkIfCardsMatch(i) {
     if (this.selectedCards.length === 2) {
-      console.log('matched array', this.matchedCards);
     return this.checkMatchedInfo(i);
     }
     return false;
@@ -48,7 +46,6 @@ class Deck {
       this.matchedCards.push(currentCard);
     }
     this.matchedCounter++;
-    console.log(this.matchedCounter);
   }
 
   pushToDeck() {
