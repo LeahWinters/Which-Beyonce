@@ -42,16 +42,16 @@ function deleteMatchesFromDom() {
   setTimeout(function changeMatchedCounter() {
     var totalMatches = document.querySelector('.total-matches');
     totalMatches.innerText = `${deck.matchedCounter}`
+    changeToWinnerPage();
   }, 1500);
-  changeToWinnerPage();
 }
 
 function changeToWinnerPage() {
   var winnerPage = document.querySelector('.winner-page');
   var mainGamePage = document.querySelector('.main-game');
   if (deck.matchedCounter === 5) {
-    winnerPage.classList.add('hidden');
-    mainGamePage.classList.remove('hidden');
+    winnerPage.classList.remove('hidden');
+    mainGamePage.classList.add('hidden');
   }
 }
 
