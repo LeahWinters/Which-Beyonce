@@ -1,13 +1,25 @@
 var deck = new Deck();
-var startTimer;
-var endTimer;
-var totalGameTime;
+var cardHolderSection = document.querySelector('.container-to-all-cards');
+var winnerPage = document.querySelector('.winner-page');
+var mainGamePage = document.querySelector('.main-game');
+var startTime;
+var endTime;
+var totalGameSeconds;
+var minutes;
+var seconds;
+// var playAgainBtn = document.getElementById();
 
 window.addEventListener('load', displayCards);
+document.addEventListener('click', handleClick);
+
+function handleClick(event) {
+  if (event.target.classList.contains('play-again-btn')) {
+    playAgain(event);
+  }
+}
 
 function displayCards() {
   deck.pushToDeck()
-  var cardHolderSection = document.querySelector('.container-to-all-cards');
   console.log(deck.cards)
   for (var i = 0; i < deck.cards.length; i++) {
     cardHolderSection.insertAdjacentHTML('afterend',
@@ -18,7 +30,7 @@ function displayCards() {
     </div>
     </section>`);
   }
-  startTimer = Date.now();
+  startTime = Date.now();
 }
 
 function initialCardClick(i, event) {
@@ -51,21 +63,30 @@ function deleteMatchesFromDom() {
 }
 
 function changeToWinnerPage() {
-  var totalTimeCompletion = document.querySelector('.total-sec');
-  var winnerPage = document.querySelector('.winner-page');
-  var mainGamePage = document.querySelector('.main-game');
+  var totalSecTimeCompletion = document.querySelector('.total-sec');
+  var totalMinTimeCompletion = document.querySelector('.total-min');
   if (deck.matchedCounter === 5) {
     winnerPage.classList.remove('hidden');
     mainGamePage.classList.add('hidden');
   }
-  endTimer = Date.now();
+  endTime = Date.now();
   timer();
-  totalTimeCompletion.innerText = `${totalGameTime} seconds`;
+  totalSecTimeCompletion.innerText = `${seconds} seconds`;
+  totalMinTimeCompletion.innerText = `${minutes} minutes`
 }
 
 function timer() {
-  totalGameTime = (endTimer - startTimer) / 1000;
-  return totalGameTime;
+  totalGameSeconds = Math.floor((endTime - startTime) / 1000);
+  minutes = Math.floor((totalGameSeconds / 60) % 60);
+  seconds = Math.floor((totalGameSeconds - minutes) % 60);
+  console.log('min', minutes, 'sec', seconds);
+  // return totalGameTime;
+}
+
+function playAgain(event) {
+  winnerPage.classList.add('hidden');
+  mainGamePage.classList.remove('hidden');
+  window.location.reload();
 }
 
 function flipCard(event) {
