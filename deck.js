@@ -54,6 +54,7 @@ class Deck {
       var newCard = new Card(matchedCardId[i]);
       this.cards.push(newCard);
     }
+    
     return this.cards;
   }
 }
