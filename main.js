@@ -7,7 +7,7 @@ var endTime;
 var totalGameSeconds;
 var minutes;
 var seconds;
-// var winningTimeHolder = [];
+var winningTimeHolder = [];
 
 window.addEventListener('load', function() {
   displayCards(deck)
@@ -21,7 +21,7 @@ function handleClick(event) {
 }
 
 function displayCards(deck) {
-  deck.pushToDeck()
+  deck.pushToDeck();
   for (var i = 0; i < deck.cards.length; i++) {
     cardHolderSection.insertAdjacentHTML('beforeend',
       `<section onClick="initialCardClick(${i}, event)" class="flip-container">
@@ -110,19 +110,24 @@ function displayWinningTime() {
 	var parsedTime = JSON.parse(storedTime);
   minutes = parsedTime.minutes;
   seconds = parsedTime.seconds;
+  var totalTime = totalGameSeconds
+  checkTimeArray(totalTime);
   var topTime = document.querySelector('.top-min-nums');
   topTime.insertAdjacentHTML('beforeend', `<p class="winning-time">${minutes} minutes ${seconds} seconds</p>`);
+
 }
 
-// function displayOnlyHighestTimes() {
-// push time to the array
-//  if the array.length is less then or === 3
-// reorder the array
-// if the array.length is > 3
-//  loop through the array and kick out the highest time
-// reorder the times from smallest to highest
-
-//   if (winningTimeHolder.length < 3 ) {
-//
-//   }
-// }
+function checkTimeArray(totalTime) {
+  winningTimeHolder.push(totalTime);
+  console.log(winningTimeHolder);
+  for (var i = 0; i < winningTimeHolder.length; i++) {
+    if (winningTimeHolder.length <= 3) {
+      winningTimeHolder.sort();
+      console.log(winningTimeHolder);
+    } else if (winningTimeHolder.length > 3) {
+      winningTimeHolder.sort();
+      winningTimeHolder.pop(totalTime);
+      console.log(winningTimeHolder);
+    }
+  }
+}
