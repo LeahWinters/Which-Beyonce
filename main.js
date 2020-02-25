@@ -7,9 +7,11 @@ var endTime;
 var totalGameSeconds;
 var minutes;
 var seconds;
-// var playAgainBtn = document.getElementById();
+// var winningTimeHolder = [];
 
-window.addEventListener('load', displayCards);
+window.addEventListener('load', function() {
+  displayCards(deck)
+});
 document.addEventListener('click', handleClick);
 
 function handleClick(event) {
@@ -18,10 +20,10 @@ function handleClick(event) {
   }
 }
 
-function displayCards() {
+function displayCards(deck) {
   deck.pushToDeck()
   for (var i = 0; i < deck.cards.length; i++) {
-    cardHolderSection.insertAdjacentHTML('afterend',
+    cardHolderSection.insertAdjacentHTML('beforeend',
       `<section onClick="initialCardClick(${i}, event)" class="flip-container">
       <div class="front-and-back-container ${"front-and-back-container" + i }">
     <div class="card ${"card" + i + "-front"}"></div>
@@ -30,6 +32,7 @@ function displayCards() {
     </section>`);
   }
   startTime = Date.now();
+  displayWinningTime();
 }
 
 function initialCardClick(i, event) {
@@ -69,22 +72,57 @@ function changeToWinnerPage() {
   endTime = Date.now();
   timer();
   totalSecTimeCompletion.innerText = `${seconds} seconds`;
-  totalMinTimeCompletion.innerText = `${minutes} minutes`
+  totalMinTimeCompletion.innerText = `${minutes} minutes`;
 }
 
 function timer() {
   totalGameSeconds = Math.floor((endTime - startTime) / 1000);
   minutes = Math.floor((totalGameSeconds / 60) % 60);
   seconds = Math.floor((totalGameSeconds - minutes) % 60);
+  timeStorage(minutes, seconds);
 }
 
 function playAgain(event) {
   winnerPage.classList.add('hidden');
   mainGamePage.classList.remove('hidden');
-  window.location.reload();
+  cardHolderSection.innerHTML = '';
+  deck = new Deck();
+  var totalMatches = document.querySelector('.total-matches');
+  totalMatches.innerText = 0;
+  displayCards(deck);
 }
 
 function flipCard(event) {
   var closest = event.target.closest('.front-and-back-container');
   closest.classList.toggle('flip');
 }
+
+function timeStorage(minutes, seconds) {
+  var timeToStore = {
+    minutes: minutes,
+    seconds: seconds
+  }
+  localStorage.setItem('timeInfo', JSON.stringify(timeToStore));
+}
+
+function displayWinningTime() {
+  var storedTime = localStorage.getItem('timeInfo');
+	var parsedTime = JSON.parse(storedTime);
+  minutes = parsedTime.minutes;
+  seconds = parsedTime.seconds;
+  var topTime = document.querySelector('.top-min-nums');
+  topTime.insertAdjacentHTML('beforeend', `<p class="winning-time">${minutes} minutes ${seconds} seconds</p>`);
+}
+
+// function displayOnlyHighestTimes() {
+// push time to the array
+//  if the array.length is less then or === 3
+// reorder the array
+// if the array.length is > 3
+//  loop through the array and kick out the highest time
+// reorder the times from smallest to highest
+
+//   if (winningTimeHolder.length < 3 ) {
+//
+//   }
+// }

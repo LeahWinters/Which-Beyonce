@@ -75,8 +75,14 @@ h2 {
   width: 26%;
 }
 
-.third-highest-time {
-  margin-bottom: 15%;
+.top-min-nums {
+  display: flex;
+  flex-direction: column;
+  width: 93%;
+}
+
+.winning-time {
+  font-size: 0.9em;
 }
 
 /* right side of screen */
@@ -89,12 +95,6 @@ main {
   background-image: url(assets/pamsPainting.jpg);
   background-size: cover;
   height: 100vh;
-}
-
-.container-to-all-cards {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
 }
 
 .flip-container {
