@@ -23,11 +23,12 @@ function handleClick(event) {
 function displayCards(deck) {
   deck.pushToDeck();
   for (var i = 0; i < deck.cards.length; i++) {
+    console.log(`${deck.cards[i].matchedInfo + "-front"}`)
     cardHolderSection.insertAdjacentHTML('beforeend',
       `<section onClick="initialCardClick(${i}, event)" class="flip-container">
       <div class="front-and-back-container ${"front-and-back-container" + i }">
-    <div class="card ${"card" + i + "-front"}"></div>
-    <div class="card ${"card" + i + "-back"}"></div>
+    <div class="card"></div>
+    <div class="card ${deck.cards[i].matchedInfo + "-back"}"></div>
     </div>
     </section>`);
   }
@@ -39,13 +40,14 @@ function initialCardClick(i, event) {
   flipCard(event);
   if (deck.selectedCards.length < 2 && deck.cards[i].selected === false) {
     deck.checkSelectedCards(i);
+        console.log(deck.selectedCards, "first slectedcards")
     var willDeleteCard = deck.checkIfCardsMatch(i);
     if (willDeleteCard === true) {
       deleteMatchesFromDom();
     }
   } else {
-    deck.removesSelectedArray(i, event)
-    flipCard(event);
+    deck.removesSelectedArray(i, event);
+    console.log(deck.selectedCards, "alreadyseletedcard")
   }
 }
 
@@ -93,8 +95,10 @@ function playAgain(event) {
 }
 
 function flipCard(event) {
+    console.log(event.target);
   var closest = event.target.closest('.front-and-back-container');
   closest.classList.toggle('flip');
+
 }
 
 function timeStorage(minutes, seconds) {
@@ -110,24 +114,31 @@ function displayWinningTime() {
 	var parsedTime = JSON.parse(storedTime);
   minutes = parsedTime.minutes;
   seconds = parsedTime.seconds;
-  var totalTime = totalGameSeconds
+  var totalTime = totalGameSeconds;
   checkTimeArray(totalTime);
-  var topTime = document.querySelector('.top-min-nums');
-  topTime.insertAdjacentHTML('beforeend', `<p class="winning-time">${minutes} minutes ${seconds} seconds</p>`);
-
 }
 
 function checkTimeArray(totalTime) {
   winningTimeHolder.push(totalTime);
   console.log(winningTimeHolder);
+  winningTimeHolder.sort(function(a, b){
+    return a - b;
+  });
   for (var i = 0; i < winningTimeHolder.length; i++) {
-    if (winningTimeHolder.length <= 3) {
-      winningTimeHolder.sort();
-      console.log(winningTimeHolder);
-    } else if (winningTimeHolder.length > 3) {
-      winningTimeHolder.sort();
+    if (winningTimeHolder.length > 3) {
       winningTimeHolder.pop(totalTime);
       console.log(winningTimeHolder);
+    }
+  }
+  displayWinningTimeInOrder(winningTimeHolder);
+}
+
+function displayWinningTimeInOrder(winningTimeHolder) {
+  var topTime = document.querySelector('.top-min-nums');
+  topTime.innerHTML = '';
+  if (winningTimeHolder.length > 0) {
+    for (var i = 0; i < winningTimeHolder.length; i++) {
+      topTime.insertAdjacentHTML('beforeend', `<p class="winning-time">${winningTimeHolder[i]} seconds</p>`);
     }
   }
 }
