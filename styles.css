@@ -5,12 +5,7 @@ body {
   width: 100vw;
 }
 
-.whole-page {
-  display: flex;
-  flex-direction: row;
-}
-
-/* heading */
+/* heading  for entire main page*/
 h1 {
   background-color: #EBBAB9;
   color: #035370;
@@ -22,7 +17,13 @@ h1 {
   text-transform: uppercase;
 }
 
-/*  left side of screen*/
+/* container for all info displayed on page1 --not the title-- */
+.whole-page-container {
+  display: flex;
+  flex-direction: row;
+}
+
+/*  displayed info in left side of all main screen*/
 aside {
   align-items: center;
   background-color: #035370;
@@ -32,6 +33,7 @@ aside {
   width: 23%;
 }
 
+/* display properties for all <p> elements */
 p {
   color: #FFD3D3;
   display: flex;
@@ -41,23 +43,27 @@ p {
   text-transform: uppercase;
 }
 
+/* display properties for matches "matches-this-round" */
 .matches-this-round {
   margin-top: 12%;
   text-align: center;
   width: 44%;
 }
 
+/* display properties for matches counter */
 h2 {
   color: #FFD3D3;
   font-size: 6em;
   margin: 0;
 }
 
+/* contains all matched img's on left of main */
 .matches-made-container {
   height: 40%;
   width: 90%;
 }
 
+/* display properties for matched img's containers */
 .top-row-matched-img,
 .bottom-row-matched-img {
   display: flex;
@@ -75,17 +81,19 @@ h2 {
   width: 26%;
 }
 
-.top-min-nums {
+/* display properties for innerHTML game times */
+.top-min-num {
   display: flex;
   flex-direction: column;
   width: 93%;
 }
 
+/* innerHTML inserted times */
 .winning-time {
   font-size: 0.9em;
 }
 
-/* right side of screen */
+/* right side of main page */
 main {
   height: 100vh;
   width: 100%;
@@ -97,6 +105,7 @@ main {
   height: 100vh;
 }
 
+/* innerHTMl properties of biggest cards container */
 .flip-container {
   display: inline-flex;
   height: 7em;
@@ -106,6 +115,7 @@ main {
   width: 4em;
 }
 
+/*  innerHTMl properties of  inner cards container  */
 .front-and-back-container {
   display: inline-flex;
   transform-style: preserve-3d;
@@ -116,6 +126,52 @@ main {
   transform: rotateY(180deg);
 }
 
+.front-and-back-container0 {
+  padding: 0;
+  transform: rotate(330deg);
+}
+
+.front-and-back-container1 {
+  padding: 0;
+  transform: rotate(15deg);
+}
+
+.front-and-back-container2 {
+  padding: 0;
+  transform: rotate(120deg);
+}
+
+.front-and-back-container3 {
+  padding: 0;
+  transform: rotate(220deg);
+}
+
+.front-and-back-container4 {
+  padding: 0;
+  transform: rotate(80deg);
+}
+
+.front-and-back-container5 {
+  transform: rotate(329deg);
+}
+
+.front-and-back-container6 {
+  transform: rotate(50deg);
+}
+
+.front-and-back-container7 {
+  transform: rotate(55deg);
+}
+
+.front-and-back-container8 {
+  transform: rotate(245deg);
+}
+
+.front-and-back-container9 {
+  transform: rotate(15deg);
+}
+
+/* innerHTMl properties of  shared class card */
 .card {
   backface-visibility: hidden;
   background-image: url(assets/dunderMiff2.jpg);
@@ -132,6 +188,7 @@ main {
   filter: brightness(150%);
 }
 
+/* innerHTMl properties of back side of displayed cards */
 .mike1-back {
   backface-visibility: hidden;
   background-image: url(assets/noGodPleaseNooo.jpg);
@@ -182,51 +239,7 @@ main {
   z-index: 2;
 }
 
-.front-and-back-container0 {
-  padding: 0;
-  transform: rotate(330deg);
-}
-
-.front-and-back-container1 {
-  padding: 0;
-  transform: rotate(15deg);
-}
-
-.front-and-back-container2 {
-  padding: 0;
-  transform: rotate(120deg);
-}
-
-.front-and-back-container3 {
-  padding: 0;
-  transform: rotate(220deg);
-}
-
-.front-and-back-container4 {
-  padding: 0;
-  transform: rotate(80deg);
-}
-
-.front-and-back-container5 {
-  transform: rotate(329deg);
-}
-
-.front-and-back-container6 {
-  transform: rotate(50deg);
-}
-
-.front-and-back-container7 {
-  transform: rotate(55deg);
-}
-
-.front-and-back-container8 {
-  transform: rotate(245deg);
-}
-
-.front-and-back-container9 {
-  transform: rotate(15deg);
-}
-
+/* winner page for after game is won */
 .hidden {
   display: none;
 }
@@ -264,13 +277,17 @@ h4 {
   text-align: center;
 }
 
+.total-min {
+  margin-right: 2%;
+}
+
 .winner-pg-btn-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.win-pg-btns {
+.win-pg-btn {
   background-color: #FFF;
   border: none;
   color: #000;
@@ -282,11 +299,7 @@ h4 {
   width: 25%;
 }
 
-.total-min {
-  margin-right: 2%;
-}
-
-.win-pg-btns:hover {
+.win-pg-btn:hover {
   background-color: #000;
   border: solid 3px #FFF;
   color: #FFF;
