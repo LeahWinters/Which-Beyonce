@@ -5,10 +5,10 @@ class Deck {
     this.matchedCounter = 0;
     this.selectedCards = [];
   }
-
-  shuffle() {
-
-  }
+  //
+  // shuffle() {
+  //
+  // }
 
   checkSelectedCards(i) {
     this.selectedCards.push(i);
@@ -16,10 +16,10 @@ class Deck {
   }
 
   removesSelectedArray(i) {
-    if (this.selectedCards.length <= 2 && this.cards[i].selected === true) {
+    if (this.cards[i].selected === true) {
+      this.cards[i].selected = false;
       var indexCard = this.selectedCards.indexOf(deck.cards[i]);
       this.selectedCards.splice(indexCard, 1);
-      this.cards[i].selected = false;
     }
   }
 
@@ -35,6 +35,7 @@ class Deck {
       this.moveToMatched(i);
       return true;
     } else {
+      console.log("HELOOOOOO")
       return false;
     }
   }
@@ -50,11 +51,22 @@ class Deck {
 
   pushToDeck() {
     var matchedCardId = ['mike1', 'mike2', 'mike3', 'mike4', 'mike5', 'mike1', 'mike2', 'mike3', 'mike4', 'mike5'];
+    matchedCardId = this.randomizeDeck(matchedCardId);
+    console.log(matchedCardId);
     for (var i = 0; i < 10; i++) {
       var newCard = new Card(matchedCardId[i]);
       this.cards.push(newCard);
     }
-    
     return this.cards;
+  }
+
+  randomizeDeck(matchedCardId) {
+    for (var i = matchedCardId.length-1; i >= 0; i--) {
+		  var randomIndex = Math.floor(Math.random() * (i + 1));
+		  var itemAtIndex = matchedCardId[randomIndex];
+		matchedCardId[randomIndex] = matchedCardId[i];
+		matchedCardId[i] = itemAtIndex;
+    }
+    return matchedCardId;
   }
 }

@@ -7,7 +7,7 @@ var endTime;
 var totalGameSeconds;
 var minutes;
 var seconds;
-// var winningTimeHolder = [];
+var winningTimeHolder = [];
 
 window.addEventListener('load', function() {
   displayCards(deck)
@@ -21,13 +21,14 @@ function handleClick(event) {
 }
 
 function displayCards(deck) {
-  deck.pushToDeck()
+  deck.pushToDeck();
   for (var i = 0; i < deck.cards.length; i++) {
+    console.log(`${deck.cards[i].matchedInfo + "-front"}`)
     cardHolderSection.insertAdjacentHTML('beforeend',
       `<section onClick="initialCardClick(${i}, event)" class="flip-container">
       <div class="front-and-back-container ${"front-and-back-container" + i }">
-    <div class="card ${"card" + i + "-front"}"></div>
-    <div class="card ${"card" + i + "-back"}"></div>
+    <div class="card"></div>
+    <div class="card ${deck.cards[i].matchedInfo + "-back"}"></div>
     </div>
     </section>`);
   }
@@ -39,13 +40,14 @@ function initialCardClick(i, event) {
   flipCard(event);
   if (deck.selectedCards.length < 2 && deck.cards[i].selected === false) {
     deck.checkSelectedCards(i);
+        console.log(deck.selectedCards, "first slectedcards")
     var willDeleteCard = deck.checkIfCardsMatch(i);
     if (willDeleteCard === true) {
       deleteMatchesFromDom();
     }
   } else {
-    deck.removesSelectedArray(i, event)
-    flipCard(event);
+    deck.removesSelectedArray(i, event);
+    console.log(deck.selectedCards, "alreadyseletedcard")
   }
 }
 
@@ -93,8 +95,10 @@ function playAgain(event) {
 }
 
 function flipCard(event) {
+    console.log(event.target);
   var closest = event.target.closest('.front-and-back-container');
   closest.classList.toggle('flip');
+
 }
 
 function timeStorage(minutes, seconds) {
@@ -110,19 +114,31 @@ function displayWinningTime() {
 	var parsedTime = JSON.parse(storedTime);
   minutes = parsedTime.minutes;
   seconds = parsedTime.seconds;
-  var topTime = document.querySelector('.top-min-nums');
-  topTime.insertAdjacentHTML('beforeend', `<p class="winning-time">${minutes} minutes ${seconds} seconds</p>`);
+  var totalTime = totalGameSeconds;
+  checkTimeArray(totalTime);
 }
 
-// function displayOnlyHighestTimes() {
-// push time to the array
-//  if the array.length is less then or === 3
-// reorder the array
-// if the array.length is > 3
-//  loop through the array and kick out the highest time
-// reorder the times from smallest to highest
+function checkTimeArray(totalTime) {
+  winningTimeHolder.push(totalTime);
+  console.log(winningTimeHolder);
+  winningTimeHolder.sort(function(a, b){
+    return a - b;
+  });
+  for (var i = 0; i < winningTimeHolder.length; i++) {
+    if (winningTimeHolder.length > 3) {
+      winningTimeHolder.pop(totalTime);
+      console.log(winningTimeHolder);
+    }
+  }
+  displayWinningTimeInOrder(winningTimeHolder);
+}
 
-//   if (winningTimeHolder.length < 3 ) {
-//
-//   }
-// }
+function displayWinningTimeInOrder(winningTimeHolder) {
+  var topTime = document.querySelector('.top-min-nums');
+  topTime.innerHTML = '';
+  if (winningTimeHolder.length > 0) {
+    for (var i = 0; i < winningTimeHolder.length; i++) {
+      topTime.insertAdjacentHTML('beforeend', `<p class="winning-time">${winningTimeHolder[i]} seconds</p>`);
+    }
+  }
+}

@@ -132,8 +132,7 @@ main {
   filter: brightness(150%);
 }
 
-.card0-back,
-.card5-back {
+.mike1-back {
   backface-visibility: hidden;
   background-image: url(assets/noGodPleaseNooo.jpg);
   background-position: center bottom;
@@ -143,8 +142,7 @@ main {
   z-index: 2;
 }
 
-.card1-back,
-.card6-back {
+.mike2-back {
   backface-visibility: hidden;
   background-image: url(assets/prisonMike.jpg);
   background-position: center bottom;
@@ -154,8 +152,7 @@ main {
   z-index: 2;
 }
 
-.card2-back,
-.card7-back {
+.mike3-back {
   backface-visibility: hidden;
   background-image: url(assets/sexySanta.jpg);
   background-position: center bottom;
@@ -165,8 +162,7 @@ main {
   z-index: 2;
 }
 
-.card3-back,
-.card8-back {
+.mike4-back {
   backface-visibility: hidden;
   background-image: url(assets/tellMeMore.jpg);
   background-position: center bottom;
@@ -176,8 +172,7 @@ main {
   z-index: 2;
 }
 
-.card4-back,
-.card9-back {
+.mike5-back {
   backface-visibility: hidden;
   background-image: url(assets/worldsBestBoss.jpg);
   background-position: center bottom;
