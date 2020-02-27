@@ -49,11 +49,13 @@ function selectingCards(i, event) {
   }
 }
 
-function deleteMatchesFromDom() {
+function deleteMatchesFromDom(i) {
   for (var i = 0; i < deck.selectedCards.length; i++) {
     var cardContainer = document.querySelector('.front-and-back-container' + `${deck.selectedCards[i]}`);
     cardContainer.style.visibility = 'hidden';
   }
+    // displayMatchedInAside(i);
+    // displayMatched(i);
   deck.selectedCards = [];
   setTimeout(function changeMatchedCounter() {
     var totalMatches = document.querySelector('.total-matches');
@@ -61,6 +63,30 @@ function deleteMatchesFromDom() {
     changeToWinnerPage();
   }, 1500);
 }
+
+// function displayMatchedInAside(i) {
+//   var box1 = document.querySelector('.mike1-matched');
+//   var box2 = document.querySelector('.mike2-matched');
+//   var box3 = document.querySelector('.mike3-matched');
+//   var box4 = document.querySelector('.mike4-matched');
+//   var box5 = document.querySelector('.mike5-matched');
+//   if (deck.cards[i].matchedInfo === 'mike1') {
+//     box1.classList.remove('hidden');
+//   }
+// }
+
+// function displayMatched(i) {
+//   if (deck.matchedCards.length < 2) {
+//     return;
+//   }
+//   var matchedImage = document.querySelectorAll('.matched-img');
+//   switch (deck.matchedCards[deck.matchedCards.length - 1].matchedInfo) {
+//     case "mike1":
+//     matchedImage[0].src = "assets/noGodPleaseNooo.jpg";
+//     break;
+//   }
+//   console.log(deck.matchedCards[deck.matchedCards.length - 1].matchedInfo);
+// }
 
 function changeToWinnerPage() {
   var totalSecTimeCompletion = document.querySelector('.total-sec');
