@@ -143,7 +143,7 @@ function checkLocalStorageArray(totalGameSeconds) {
 }
 
 function displayTopThreeTimes(winningTimeHolder) {
-  var topTime = document.querySelector('.top-min-nums');
+  var topTime = document.querySelector('.top-min-num');
   topTime.innerHTML = '';
   if (winningTimeHolder.length > 0) {
     for (var i = 0; i < winningTimeHolder.length; i++) {

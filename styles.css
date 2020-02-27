@@ -83,7 +83,7 @@ h2 {
 
 /* display properties for innerHTML game times */
 
-.top-min-nums {
+.top-min-num {
   display: flex;
   flex-direction: column;
   width: 93%;
@@ -91,7 +91,7 @@ h2 {
 
 /* innerHTML inserted times */
 .winning-time {
-  font-size: 0.9em;
+  font-size: 0.7em;
 }
 
 /* right side of main page */
