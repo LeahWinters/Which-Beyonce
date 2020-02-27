@@ -82,7 +82,8 @@ h2 {
 }
 
 /* display properties for innerHTML game times */
-.top-min-num {
+
+.top-min-nums {
   display: flex;
   flex-direction: column;
   width: 93%;

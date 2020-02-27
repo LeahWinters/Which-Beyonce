@@ -5,10 +5,6 @@ class Deck {
     this.matchedCounter = 0;
     this.selectedCards = [];
   }
-  //
-  // shuffle() {
-  //
-  // }
 
   checkSelectedCards(i) {
     this.selectedCards.push(i);
@@ -35,7 +31,6 @@ class Deck {
       this.moveToMatched(i);
       return true;
     } else {
-      console.log("HELOOOOOO")
       return false;
     }
   }
