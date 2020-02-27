@@ -25,7 +25,7 @@ function displayCards(deck) {
   for (var i = 0; i < deck.cards.length; i++) {
     console.log(`${deck.cards[i].matchedInfo + "-front"}`)
     cardHolderSection.insertAdjacentHTML('beforeend',
-      `<section onClick="initialCardClick(${i}, event)" class="flip-container">
+      `<section onClick="selectingCards(${i}, event)" class="flip-container">
       <div class="front-and-back-container ${"front-and-back-container" + i }">
     <div class="card"></div>
     <div class="card ${deck.cards[i].matchedInfo + "-back"}"></div>
@@ -36,26 +36,26 @@ function displayCards(deck) {
   displayWinningTime();
 }
 
-function initialCardClick(i, event) {
+function selectingCards(i, event) {
   flipCard(event);
   if (deck.selectedCards.length < 2 && deck.cards[i].selected === false) {
     deck.checkSelectedCards(i);
-        console.log(deck.selectedCards, "first slectedcards")
     var willDeleteCard = deck.checkIfCardsMatch(i);
     if (willDeleteCard === true) {
       deleteMatchesFromDom();
     }
   } else {
     deck.removesSelectedArray(i, event);
-    console.log(deck.selectedCards, "alreadyseletedcard")
   }
 }
 
-function deleteMatchesFromDom() {
+function deleteMatchesFromDom(i) {
   for (var i = 0; i < deck.selectedCards.length; i++) {
     var cardContainer = document.querySelector('.front-and-back-container' + `${deck.selectedCards[i]}`);
     cardContainer.style.visibility = 'hidden';
   }
+    // displayMatchedInAside(i);
+    // displayMatched(i);
   deck.selectedCards = [];
   setTimeout(function changeMatchedCounter() {
     var totalMatches = document.querySelector('.total-matches');
@@ -64,15 +64,39 @@ function deleteMatchesFromDom() {
   }, 1500);
 }
 
+// function displayMatchedInAside(i) {
+//   var box1 = document.querySelector('.mike1-matched');
+//   var box2 = document.querySelector('.mike2-matched');
+//   var box3 = document.querySelector('.mike3-matched');
+//   var box4 = document.querySelector('.mike4-matched');
+//   var box5 = document.querySelector('.mike5-matched');
+//   if (deck.cards[i].matchedInfo === 'mike1') {
+//     box1.classList.remove('hidden');
+//   }
+// }
+
+// function displayMatched(i) {
+//   if (deck.matchedCards.length < 2) {
+//     return;
+//   }
+//   var matchedImage = document.querySelectorAll('.matched-img');
+//   switch (deck.matchedCards[deck.matchedCards.length - 1].matchedInfo) {
+//     case "mike1":
+//     matchedImage[0].src = "assets/noGodPleaseNooo.jpg";
+//     break;
+//   }
+//   console.log(deck.matchedCards[deck.matchedCards.length - 1].matchedInfo);
+// }
+
 function changeToWinnerPage() {
   var totalSecTimeCompletion = document.querySelector('.total-sec');
   var totalMinTimeCompletion = document.querySelector('.total-min');
   if (deck.matchedCounter === 5) {
     winnerPage.classList.remove('hidden');
     mainGamePage.classList.add('hidden');
+    endTime = Date.now();
+    timer();
   }
-  endTime = Date.now();
-  timer();
   totalSecTimeCompletion.innerText = `${seconds} seconds`;
   totalMinTimeCompletion.innerText = `${minutes} minutes`;
 }
@@ -80,8 +104,9 @@ function changeToWinnerPage() {
 function timer() {
   totalGameSeconds = Math.floor((endTime - startTime) / 1000);
   minutes = Math.floor((totalGameSeconds / 60) % 60);
-  seconds = Math.floor((totalGameSeconds - minutes) % 60);
-  timeStorage(minutes, seconds);
+  seconds = Math.floor((totalGameSeconds) % 60);
+  winningTimeHolder.push(totalGameSeconds);
+  timeStorage(winningTimeHolder);
 }
 
 function playAgain(event) {
@@ -94,46 +119,30 @@ function playAgain(event) {
   displayCards(deck);
 }
 
-function flipCard(event) {
-    console.log(event.target);
-  var closest = event.target.closest('.front-and-back-container');
-  closest.classList.toggle('flip');
-
-}
-
-function timeStorage(minutes, seconds) {
-  var timeToStore = {
-    minutes: minutes,
-    seconds: seconds
-  }
-  localStorage.setItem('timeInfo', JSON.stringify(timeToStore));
+function timeStorage(winningTimeHolder) {
+  localStorage.setItem('timeInfo', JSON.stringify(winningTimeHolder));
 }
 
 function displayWinningTime() {
   var storedTime = localStorage.getItem('timeInfo');
 	var parsedTime = JSON.parse(storedTime);
-  minutes = parsedTime.minutes;
-  seconds = parsedTime.seconds;
-  var totalTime = totalGameSeconds;
-  checkTimeArray(totalTime);
+  var totalGameSeconds = parsedTime
+  checkLocalStorageArray(totalGameSeconds);
 }
 
-function checkTimeArray(totalTime) {
-  winningTimeHolder.push(totalTime);
-  console.log(winningTimeHolder);
+function checkLocalStorageArray(totalGameSeconds) {
   winningTimeHolder.sort(function(a, b){
     return a - b;
   });
   for (var i = 0; i < winningTimeHolder.length; i++) {
     if (winningTimeHolder.length > 3) {
-      winningTimeHolder.pop(totalTime);
-      console.log(winningTimeHolder);
+      winningTimeHolder.pop(totalGameSeconds);
     }
   }
-  displayWinningTimeInOrder(winningTimeHolder);
+  displayTopThreeTimes(winningTimeHolder);
 }
 
-function displayWinningTimeInOrder(winningTimeHolder) {
+function displayTopThreeTimes(winningTimeHolder) {
   var topTime = document.querySelector('.top-min-nums');
   topTime.innerHTML = '';
   if (winningTimeHolder.length > 0) {
@@ -141,4 +150,9 @@ function displayWinningTimeInOrder(winningTimeHolder) {
       topTime.insertAdjacentHTML('beforeend', `<p class="winning-time">${winningTimeHolder[i]} seconds</p>`);
     }
   }
+}
+
+function flipCard(event) {
+  var closest = event.target.closest('.front-and-back-container');
+  closest.classList.toggle('flip');
 }
